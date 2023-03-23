@@ -26,7 +26,7 @@ public class PalindromeChecker {
                     String reload = sc.next();
                     if (reload.equalsIgnoreCase("Y")) {
                         wordReverse = "";
-                        break; // exit the inner while loop
+                        break;
                     } else if (reload.equalsIgnoreCase("N")) {
                         System.out.println("Exiting program...");
                         return;
