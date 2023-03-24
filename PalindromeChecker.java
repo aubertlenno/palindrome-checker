@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class PalindromeChecker {
     public static boolean containsNumbers(String string) {
@@ -26,7 +26,7 @@ public class PalindromeChecker {
                     String reload = sc.next();
                     if (reload.equalsIgnoreCase("Y")) {
                         wordReverse = "";
-                        break; // exit the inner while loop
+                        break;
                     } else if (reload.equalsIgnoreCase("N")) {
                         System.out.println("Exiting program...");
                         return;
@@ -38,7 +38,7 @@ public class PalindromeChecker {
                 continue;
             }
             word = word.toLowerCase();
-            Stack<Character> stack = new Stack<>();
+            ListStack<Character> stack = new ListStack<>();
 
             for (int i=0; i<word.length(); i++){
                 stack.push(word.charAt(i));
