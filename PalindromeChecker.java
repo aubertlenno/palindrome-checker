@@ -12,59 +12,109 @@ public class PalindromeChecker {
         }
         return false;
     }
+
+    public static boolean isPalindromeWord(String word) {
+        ListStack<Character> stack = new ListStack<>();
+        word = word.toLowerCase();
+
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
+
+        String wordReverse = "";
+        while (!stack.isEmpty()) {
+            wordReverse += Character.toString(stack.pop());
+        }
+
+        return word.equals(wordReverse);
+    }
+
+    public static boolean isPalindromeNumber(String number) {
+        ListStack<Character> stack = new ListStack<>();
+
+        for (int i = 0; i < number.length(); i++) {
+            stack.push(number.charAt(i));
+        }
+
+        String numberReverse = "";
+        while (!stack.isEmpty()) {
+            numberReverse += Character.toString(stack.pop());
+        }
+
+        return number.equals(numberReverse);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String word, wordReverse = "";
+        String type = "";
+        boolean checkAnotherPalindrome = true;
+        while (checkAnotherPalindrome) {
+            while (!(type.equalsIgnoreCase("word") || type.equalsIgnoreCase("number"))) {
+                System.out.print("What kind of palindrome do you want to check (word/number)? ");
+                type = sc.next();
+                if (!(type.equalsIgnoreCase("word") || type.equalsIgnoreCase("number"))) {
+                    System.out.println("Invalid input. Please enter either 'word' or 'number'.");
+                    System.out.println("");
+                }
+            }
 
-        while (true){
-            System.out.print("Enter a word to see if it is palindrome or not: ");
-            word = sc.next();
-            if (containsNumbers(word) == true) {
-                System.out.println("Palindrome is only for word, do not enter any number!");
-                while (true) {
-                    System.out.print("Do you want to check another word? (Y/N): ");
-                    String reload = sc.next();
-                    if (reload.equalsIgnoreCase("Y")) {
-                        wordReverse = "";
-                        break;
-                    } else if (reload.equalsIgnoreCase("N")) {
-                        System.out.println("Exiting program...");
-                        return;
+            String input = "";
+            while (true) {
+                System.out.print("Enter a " + type + " to see if it is palindrome or not: ");
+                input = sc.next();
+                if (type.equalsIgnoreCase("word")) {
+                    if (containsNumbers(input)) {
+                        System.out.println("Palindrome is only for words, please enter a valid word!");
+                        System.out.println("");
+                        continue;
+                    }
+                    if (isPalindromeWord(input)) {
+                        System.out.println("It is a palindrome.");
+                        System.out.println("");
                     } else {
-                        System.out.println("Invalid input. Please enter Y or N.");
+                        System.out.println("It is not a palindrome.");
+                        System.out.println("");
+                    }
+                } else {
+                    try {
+                        Long.parseLong(input);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Palindrome is only for numbers, please enter a valid number!");
+                        System.out.println("");
+                        continue;
+                    }
+                    if (isPalindromeNumber(input)) {
+                        System.out.println("It is a palindrome.");
+                        System.out.println("");
+                    } else {
+                        System.out.println("It is not a palindrome.");
                         System.out.println("");
                     }
                 }
-                continue;
-            }
-            word = word.toLowerCase();
-            ListStack<Character> stack = new ListStack<>();
-
-            for (int i=0; i<word.length(); i++){
-                stack.push(word.charAt(i));
-            }
-            while (!stack.isEmpty()) {
-                wordReverse += Character.toString(stack.pop());
-            }
-            if (word.equals(wordReverse)) {
-                System.out.println("It is palindrome.");
-                System.out.println("");
-            } else {
-                System.out.println("It is not palindrome.");
-                System.out.println("");
-            }
-            while (true) {
-                System.out.print("Do you want to check another word? (Y/N): ");
-                String reload = sc.next();
-                if (reload.equalsIgnoreCase("Y")) {
-                    wordReverse = ""; // Reset the wordReverse
-                    break; // exit the current while loop
-                } else if (reload.equalsIgnoreCase("N")) {
+                String reload = "";
+                while (!(reload.equalsIgnoreCase("y") || reload.equalsIgnoreCase("n"))) {
+                    System.out.print("Do you want to check another palindrome? (Y/N): ");
+                    reload = sc.next();
+                    if (!(reload.equalsIgnoreCase("y") || reload.equalsIgnoreCase("n"))) {
+                        System.out.println("Invalid input. Please enter either 'Y' or 'N'.");
+                        System.out.println("");
+                    }
+                }
+                if (reload.equalsIgnoreCase("n")) {
                     System.out.println("Exiting program...");
-                    return; // exit the program
-                } else {
-                    System.out.println("Invalid input. Please enter Y or N."); // restart the while loop
-                    System.out.println("");
+                    checkAnotherPalindrome = false;
+                    break;
+                } else if (reload.equalsIgnoreCase("y")) {
+                    type = "";
+                    while (!(type.equalsIgnoreCase("word") || type.equalsIgnoreCase("number"))) {
+                        System.out.print("\nWhat kind of palindrome do you want to check (word/number)? ");
+                        type = sc.next();
+                        if (!(type.equalsIgnoreCase("word") || type.equalsIgnoreCase("number"))) {
+                            System.out.println("Invalid input. Please enter either 'word' or 'number'.");
+                            System.out.println("");
+                        }
+                    }
+                    continue;
                 }
             }
         }
