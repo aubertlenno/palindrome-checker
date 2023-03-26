@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class PalindromeChecker {
+public class PalindromeStack {
     public static boolean containsNumbers(String string) {
         if (string == null || string.isEmpty()) {
             return false;
