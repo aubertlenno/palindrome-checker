@@ -90,20 +90,20 @@ public class PalindromeChecker {
                         System.out.println("");
                     }
                 }
-                String reload = "";
-                while (!(reload.equalsIgnoreCase("y") || reload.equalsIgnoreCase("n"))) {
+                String again = "";
+                while (!(again.equalsIgnoreCase("y") || again.equalsIgnoreCase("n"))) {
                     System.out.print("Do you want to check another palindrome? (Y/N): ");
-                    reload = sc.next();
-                    if (!(reload.equalsIgnoreCase("y") || reload.equalsIgnoreCase("n"))) {
+                    again = sc.next();
+                    if (!(again.equalsIgnoreCase("y") || again.equalsIgnoreCase("n"))) {
                         System.out.println("Invalid input. Please enter either 'Y' or 'N'.");
                         System.out.println("");
                     }
                 }
-                if (reload.equalsIgnoreCase("n")) {
+                if (again.equalsIgnoreCase("n")) {
                     System.out.println("Exiting program...");
                     checkAnotherPalindrome = false;
                     break;
-                } else if (reload.equalsIgnoreCase("y")) {
+                } else if (again.equalsIgnoreCase("y")) {
                     type = "";
                     while (!(type.equalsIgnoreCase("word") || type.equalsIgnoreCase("number"))) {
                         System.out.print("\nWhat kind of palindrome do you want to check (word/number)? ");
