@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ListStack <E> implements StackInt<E> {
+public class ListStack <E>{
     private List<E> theData;
     public ListStack() {
         theData = new ArrayList<>();
@@ -11,7 +11,6 @@ public class ListStack <E> implements StackInt<E> {
         return obj;
     }
 
-    @Override
     public E peek() {
         if (isEmpty()) {
             throw new NoSuchElementException();
@@ -19,7 +18,6 @@ public class ListStack <E> implements StackInt<E> {
         return theData.get(theData.size() - 1);
     }
 
-    @Override
     public E pop() {
         if (isEmpty()) {
             throw new NoSuchElementException();
