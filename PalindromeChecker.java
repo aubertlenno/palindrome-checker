@@ -57,7 +57,6 @@ public class PalindromeChecker {
                     System.out.println("");
                 }
             }
-
             String input = "";
             while (true) {
                 System.out.print("Enter a " + type + " to see if it is palindrome or not: ");
